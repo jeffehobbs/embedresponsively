@@ -1,11 +1,11 @@
 embedresponsively
 =================
 
-Webapp to help content producers transform their embedded content via responsive magic.
+E.R. is a Webapp to help content producers transform their fixed width embedded content to fluid shapeshifing awesomeness via responsive magic.
 
-This site aspires to be a one-stop shop for all your respoinsively embedded media needs. 
+We prefer CSS based fixes but are not averse to a smidge of Javascript here and there.
 
-If you have a use case thats not covered here, get in touch! Hopeflly we can add it in.
+If you have a problematica embed or a pernicious use case that's not currently covered here, get in touch! Hopeflly we work it out and can add it in.
 
 Thanks,
 
