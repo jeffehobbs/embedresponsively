@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>embedresponsively.com</title>
+	
+	<!-- based on work by Theirry Koblentz http://alistapart.com/article/creating-intrinsic-ratios-for-video -->
+	<!-- and Anders Andersen http://amobil.se/2011/11/responsive-embeds/ -->
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
+	
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="font/font.css" rel="stylesheet">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/uri.js"></script>
+	
+	<style>
+	
+	* {
+		font-family: "ProximaNovaRgRegular", sans-serif !important;
+	}
+
+	.embed-container {
+		position: relative; 
+		padding-bottom: 56.25%; 
+		padding-top: 30px; 
+		height: 0; 
+		overflow: hidden; 
+	} 
+
+	.embed-container iframe, 
+	.embed-container object, 
+	.embed-container embed { 
+		position: absolute; 
+		top: 0; 
+		left: 0; 
+		width: 100%; 
+		height: 100%; 
+	}
+	
+	.codebox {
+		width: 97%;
+		font-family:monospace !important; 
+		font-size:11px;
+	}
+	
+	@media only screen and (max-device-width: 480px) {
+		.inputfix {
+			width: 66% !important;
+		}
+	}
+	
+	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+		.inputfix {
+			width: 66% !important;
+		}
+	}
+			
+	</style>
+	
+	<script>
+	
+	var embedLabel = "<br/><p class='control-label'>Embed code:</p>";
+	var embedContainerCSS = "&lt;style&gt;.embed-container {position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;} .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
+	var embedContainerDivOpen = "&lt;div class='embed-container'&gt;";
+	var embedContainerDivClose = "&lt;/div&gt;";
+	
+	var previewLabel = "<p class='control-label'>Preview:</p>";
+	var previewPrefix = "<div class='embed-container'>";
+	var previewSuffix = "</div>";
+
+	function createYouTubeEmbed(){
+		var youtubeURL = $("#youtube-url").val();
+		if (youtubeURL.length > 28){
+			var uri = youtubeURL;
+			var queryString = {};
+			uri.replace(
+			    new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+			    function($0, $1, $2, $3) { queryString[$1] = $3; }
+			);
+			var youtubeID = (queryString['v']);
+		} else {
+			var youtubeID = youtubeURL.substring(16);
+		}
+		
+		var youtubeEmbed = "&lt;iframe src='http://www.youtube.com/embed/" + youtubeID + "' frameborder='0' allowfullscreen&gt;&lt;/iframe&gt;";
+		var youtubepreview = "<iframe src='http://www.youtube.com/embed/" + youtubeID + "' frameborder='0' allowfullscreen></iframe>";
+
+		$("#youtubeembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedContainerCSS + embedContainerDivOpen + youtubeEmbed + embedContainerDivClose + "</textarea>");
+		$("#youtubepreview").html( previewLabel + previewPrefix + youtubepreview + previewSuffix );
+		
+	}
+
+	function createVimeoEmbed(){
+		var vimeoURL = $("#vimeo-url").val();
+		var vimeoID = vimeoURL.substring(17);
+		var vimeoEmbed = "&lt;iframe src='http://player.vimeo.com/video/" + vimeoID + "' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen&gt;&lt;/iframe&gt;";
+		var vimeopreview = "<iframe src='http://player.vimeo.com/video/" + vimeoID + "'  frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";
+
+		$("#vimeoembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedContainerCSS + embedContainerDivOpen + vimeoEmbed + embedContainerDivClose + "</textarea>");
+		$("#vimeopreview").html( previewLabel + previewPrefix + vimeopreview + previewSuffix );
+
+	}
+	
+	function createGoogleMapsEmbed(){
+		var googlemapsURL = $("#googlemaps-url").val();
+		var escapediFrameURL = googlemapsURL.replace(/\"/g,'\'');
+		var escapediFrameURLCode = escapediFrameURL.replace(/</g,'&lt;');
+		var escapediFrameURLCodeFinal = escapediFrameURLCode.replace(/>/g,'&gt;');
+
+		//alert(escapediFrameURL);
+		$("#googlemapsembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedContainerCSS + embedContainerDivOpen + escapediFrameURLCodeFinal + embedContainerDivClose + "</textarea>");
+		$("#googlemapspreview").html( previewLabel + previewPrefix + escapediFrameURL + previewSuffix );
+
+	}
+
+	function createSlideshareEmbed(){
+		var slideshareURL = $("#slideshare-url").val();
+		var escapediFrameURL = slideshareURL.replace(/\"/g,'\'');
+		var escapediFrameURLCode = escapediFrameURL.replace(/</g,'&lt;');
+		var escapediFrameURLCodeFinal = escapediFrameURLCode.replace(/>/g,'&gt;');
+
+		//alert(escapediFrameURL);
+		$("#slideshareembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedContainerCSS + embedContainerDivOpen + escapediFrameURLCodeFinal + embedContainerDivClose + "</textarea>");
+		$("#slidesharepreview").html( previewLabel + previewPrefix + escapediFrameURL + previewSuffix );
+
+	}
+	
+	function createUStreamEmbed(){
+		var ustreamURL = $("#ustream-url").val();
+		var escapediFrameURL = ustreamURL.replace(/\"/g,'\'');
+		var escapediFrameURLCode = escapediFrameURL.replace(/</g,'&lt;');
+		var escapediFrameURLCodeFinal = escapediFrameURLCode.replace(/>/g,'&gt;');
+
+		//alert(escapediFrameURL);
+		$("#ustreamembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedContainerCSS + embedContainerDivOpen + escapediFrameURLCodeFinal + embedContainerDivClose + "</textarea>");
+		$("#ustreampreview").html( previewLabel + previewPrefix + escapediFrameURL + previewSuffix );
+
+	}
+	
+	</script>
+	
+  </head>
+  <body>
+	
+	  <div class="navbar navbar-fixed-top navbar-inverse">
+	    <div class="navbar-inner">
+	      <a class="brand" href="#">&nbsp;<strong>Embed Responsively</strong></a>
+		  <form class="navbar-form pull-right">
+		    <a href="#about" role="button" class="btn btn-inverse" data-toggle="modal">About</a>&nbsp;
+		  </form>
+	    </div>
+	  </div>
+	    
+	<div class="container">
+	  <div class="row">
+	    <div class="span6 offset3">
+			
+			<div class="visible-desktop" style="height:60px"></div>
+			
+            <p>Select a media source below:</p>
+
+              <ul id="leTab" class="nav nav-pills">
+	              <li class="active"><a href="#youtube" data-toggle="tab">YouTube</a></li>
+	              <li><a href="#vimeo" data-toggle="tab">Vimeo</a></li>
+	              <li><a href="#googlemaps" data-toggle="tab">Google Maps</a></li>
+	              <li><a href="#slideshare" data-toggle="tab">Slideshare</a></li>
+	              <li><a href="#ustream" data-toggle="tab">UStream</a></li>
+	              <li><a href="#more" data-toggle="tab">More</a></li>
+              </ul>
+			  
+              <div id="leTabContent" class="tab-content">
+                <div class="tab-pane fade in active well" id="youtube">
+					
+					<form>
+					  <fieldset>
+					    <label>YouTube URL:</label>
+						<div class="input-append">
+					    	<input class="span4 inputfix" id="youtube-url" type="text" placeholder="youtube.com/watch?v=QILiHiTD3uc">
+					    	<a class="btn btn-primary" onclick="createYouTubeEmbed();">Embed</a>
+						</div>
+					  </fieldset>
+					</form>
+         			  
+  	  			  <div id="youtubepreview"></div>
+				
+	  			  <div class="code" id="youtubeembedCode"></div>
+  
+				</div>
+                <div class="tab-pane fade well" id="vimeo">
+					
+					<form>
+					  <fieldset>
+					    <label>Vimeo URL:</label>
+						<div class="input-append">
+							<input class="span4 inputfix" id="vimeo-url" type="text" placeholder="http://vimeo.com/58933055">
+					    	<a class="btn btn-primary" onclick="createVimeoEmbed();">Embed</a>
+						</div>
+					  </fieldset>
+					</form>
+  	  			  
+				  <div id="vimeopreview"></div>
+			  
+  	  			  <div class="code" id="vimeoembedCode"></div>
+				  				                
+				</div>
+                <div class="tab-pane fade well" id="googlemaps">
+										
+					<form>
+					  <fieldset>
+					    <label>Google Maps (iFrame Embed):</label>
+						<div class="input-append">
+					    	<input class="span4 inputfix" id="googlemaps-url" type="text" placeholder="<iframe width='425' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Statue+of+Liberty+National+Monument,+New+York,+NY&aq=0&oq=statue+of+&sll=37.6,-95.665&sspn=45.335781,50.976563&t=h&ie=UTF8&hq=Statue+of+Liberty+National+Monument,+New+York,+NY&ll=40.689268,-74.044738&spn=0.016921,0.032015&output=embed'></iframe>">
+					    	<a class="btn btn-primary" onclick="createGoogleMapsEmbed();">Embed</a>
+						</div>
+					  </fieldset>
+					</form>
+  	  			  
+				  <div id="googlemapspreview"></div>
+			  
+  	  			  <div class="code" id="googlemapsembedCode"></div>
+				  				
+                </div>
+
+				<div class="tab-pane fade well" id="slideshare">
+										
+					<form>
+					  <fieldset>
+					    <label>Slideshare (iFrame Embed):</label>
+						<div class="input-append">
+					    	<input class="span4 inputfix" id="slideshare-url" type="text" placeholder="<iframe src='http://www.slideshare.net/slideshow/embed_code/16396881' width='427' height='356' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' style='border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px' allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe> <div style='margin-bottom:5px'> <strong> <a href='http://www.slideshare.net/XPLAIN/publisher-the-new-marketeer-16396881' title='Publisher, the new marketeer' target='_blank'>Publisher, the new marketeer</a> </strong> from <strong><a href='http://www.slideshare.net/XPLAIN' target='_blank'>XPLAIN</a></strong> </div>
+">
+					    	<a class="btn btn-primary" onclick="createSlideshareEmbed();">Embed</a>
+						</div>
+					  </fieldset>
+					</form>
+  	  			  
+				  <div id="slidesharepreview"></div>
+			  
+  	  			  <div class="code" id="slideshareembedCode"></div>
+				  				
+                </div>
+
+
+
+<div class="tab-pane fade well" id="ustream">
+										
+					<form>
+					  <fieldset>
+					    <label>UStream (iFrame Embed):</label>
+						<div class="input-append">
+					    	<input class="span4 inputfix" id="ustream-url" type="text" placeholder="<iframe src='http://www.slideshare.net/slideshow/embed_code/16396881' width='427' height='356' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' style='border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px' allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe> <div style='margin-bottom:5px'> <strong> <a href='http://www.slideshare.net/XPLAIN/publisher-the-new-marketeer-16396881' title='Publisher, the new marketeer' target='_blank'>Publisher, the new marketeer</a> </strong> from <strong><a href='http://www.slideshare.net/XPLAIN' target='_blank'>XPLAIN</a></strong> </div>
+">
+					    	<a class="btn btn-primary" onclick="createUStreamEmbed();">Embed</a>
+						</div>
+					  </fieldset>
+					</form>
+  	  			  
+				  <div id="ustreampreview"></div>
+			  
+  	  			  <div class="code" id="ustreamembedCode"></div>
+				  				
+                </div>
+
+                <div class="tab-pane fade well" id="more">
+										
+					<p><strong>Great news!</strong> The embed codes offered by these services are already responsive:</p>
+					
+					<ul>
+						<li><a href="http://scribd.com/">Scribd</a></li>
+						<li><a href="http://soundcloud.com/">SoundCloud</a></li>
+						<li><a href="http://twitter.com/">Twitter</a></li>
+					</ul>
+				
+					<p>Know of more? <a href="mailto:jeffehobbs@gmail.com">Let me know</a>.</p>
+                </div>
+              </div>
+			  
+	    </div>
+	  </div>
+	</div>
+
+	<footer style="padding:10px 0px 10px 0px">
+		<p class="muted" style="text-align:center">&copy;
+			<script>
+				var d = new Date();
+				document.write(d.getFullYear());
+        	</script>. Please Embed Responsively.</p>
+	</footer>
+	
+	<div id="about" class="modal hide fade">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    <h3>About</h3>
+	  </div>
+	  <div class="modal-body">
+		  
+		<p><strong>embedresponsibly.com</strong> helps build responsive embed codes for embedding rich media into responsive web pages.</p>
+		
+		<p>The code here is based on research by <a href="http://alistapart.com/article/creating-intrinsic-ratios-for-video">Theirry Koblentz</a> and <a href="http://amobil.se/2011/11/responsive-embeds/">Anders Andersen</a>.</p>
+			
+	    <p>Created and maintained by <a href="http://twitter.com/jeffehobbs">@jeffehobbs</a>.</p>
+				
+	  </div>
+	  <div class="modal-footer">
+  	    <p class="pull-left">Version 1.0</p>  
+	    <a href="#" class="btn btn-primary" data-dismiss="modal">OK</a>
+	  </div>
+	</div>
+	
+  </body>
+
+</html>
