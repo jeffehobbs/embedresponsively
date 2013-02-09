@@ -1,7 +1,7 @@
-embedresponsively
+ABOUT
 =================
 
-E.R. is a Webapp to help content producers transform their fixed width embedded content to fluid shapeshifing awesomeness via responsive magic.
+EmbedResponsively is a webapp to help content producers transform their fixed width embedded content to fluid shapeshifing awesomeness via responsive magic.
 
 We prefer CSS based fixes but are not averse to a smidge of Javascript here and there.
 
