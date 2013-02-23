@@ -7,19 +7,20 @@
 	<!-- and Anders Andersen http://amobil.se/2011/11/responsive-embeds/ -->
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-	<link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
+
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 	
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="font/font.css" rel="stylesheet">
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/uri.js"></script>
 	
 	<style>
-	
+
 	* {
-		font-family: "ProximaNovaRgRegular", sans-serif !important;
+		font-family: "Open Sans", sans-serif !important;
+		font-weight: "300";
 	}
 
 	.embed-container {
@@ -195,7 +196,7 @@
 					  <fieldset>
 					    <label>Vimeo URL:</label>
 						<div class="input-append">
-							<input class="span4 inputfix" id="vimeo-url" type="text" placeholder="http://vimeo.com/58933055">
+							<input class="span4 inputfix" id="vimeo-url" type="text" placeholder="http://vimeo.com/56810854">
 					    	<a class="btn btn-primary" onclick="createVimeoEmbed();">Embed</a>
 						</div>
 					  </fieldset>
@@ -251,8 +252,7 @@
 					  <fieldset>
 					    <label>UStream (iFrame Embed):</label>
 						<div class="input-append">
-					    	<input class="span4 inputfix" id="ustream-url" type="text" placeholder="<iframe src='http://www.slideshare.net/slideshow/embed_code/16396881' width='427' height='356' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' style='border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px' allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe> <div style='margin-bottom:5px'> <strong> <a href='http://www.slideshare.net/XPLAIN/publisher-the-new-marketeer-16396881' title='Publisher, the new marketeer' target='_blank'>Publisher, the new marketeer</a> </strong> from <strong><a href='http://www.slideshare.net/XPLAIN' target='_blank'>XPLAIN</a></strong> </div>
-">
+					    	<input class="span4 inputfix" id="ustream-url" type="text" placeholder="<iframe width='480' height='302' src='http://www.ustream.tv/embed/13027369?v=3&wmode=direct' scrolling='no' frameborder='0' style='border: 0px none transparent;'>    </iframe>">
 					    	<a class="btn btn-primary" onclick="createUStreamEmbed();">Embed</a>
 						</div>
 					  </fieldset>
@@ -271,14 +271,11 @@
 					<ul>
 						<li><a href="http://scribd.com/">Scribd</a> (select 'Autosize')</li>
 						<li><a href="http://soundcloud.com/">SoundCloud</a></li>
+						<li><a href="http://storify.com/">Storify</a></li>
 						<li><a href="http://twitter.com/">Twitter</a></li>
 					</ul>
 				
-<<<<<<< HEAD
-					<p>Know of more? <a href="mailto:jeffehobbs@gmail.com">Let me know</a> or file a ticket at <a href="https://github.com/jeffehobbs/embedresponsively">GitHub</a>.</p>
-=======
-					<p>Know of more? <a href="mailto:jeffehobbs@gmail.com">Let me know</a> so we can <a href="https://github.com/jeffehobbs/embedresponsively">improve the project</a>.</p>
->>>>>>> Adding links
+					<p>Know of more? <a href="mailto:jeffehobbs@gmail.com">Let me know</a> and report any issues on <a href="https://github.com/jeffehobbs/embedresponsively/issues/new">GitHub</a>.</p>
                 </div>
               </div>
 			  
@@ -287,11 +284,8 @@
 	</div>
 
 	<footer style="padding:10px 0px 10px 0px">
-		<p class="muted" style="text-align:center">&copy;
-			<script>
-				var d = new Date();
-				document.write(d.getFullYear());
-        	</script>. Please Embed Responsively.</p>
+				<p class="muted" style="text-align:center"><a href="https://github.com/jeffehobbs/embedresponsively">Download or fork on Github</a>. 
+				Please Embed Responsively.</p>
 	</footer>
 	
 	<div id="about" class="modal hide fade">
@@ -301,11 +295,11 @@
 	  </div>
 	  <div class="modal-body">
 		  
-		<p><strong>embedresponsibly.com</strong> helps build responsive embed codes for embedding rich media into responsive web pages.</p>
+		<p><strong>embedresponsibly.com</strong> helps build responsive embed codes for embedding rich third-party media into responsive web pages.</p>
 		
-		<p>The code here is based on research by <a href="http://alistapart.com/article/creating-intrinsic-ratios-for-video">Theirry Koblentz</a> and <a href="http://amobil.se/2011/11/responsive-embeds/">Anders Andersen</a>.</p>
+		<p>The code here is based on research and work by <a href="http://alistapart.com/article/creating-intrinsic-ratios-for-video">Theirry Koblentz</a>, <a href="http://amobil.se/2011/11/responsive-embeds/">Anders Andersen</a> and <a href="http://niklausgerber.com/blog/responsive-google-or-bing-maps/">Niklaus Gerber</a>.</p>
 			
-	    <p>Created and maintained by <a href="https://github.com/jeffehobbs/embedresponsively">jeffehobbs</a>.</p>
+	    <p>Created and maintained by <a href="http://twitter.com/jeffehobbs">@jeffehobbs</a>.</p>
 				
 	  </div>
 	  <div class="modal-footer">
