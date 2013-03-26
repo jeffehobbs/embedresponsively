@@ -117,30 +117,19 @@
 
 	}
 
-	function createSlideshareEmbed(){
-		var slideshareURL = $("#slideshare-url").val();
-		var escapediFrameURL = slideshareURL.replace(/\"/g,'\'');
+	function createGenericEmbed(){
+		var genericURL = $("#generic-url").val();
+		var escapediFrameURL = genericURL.replace(/\"/g,'\'');
 		var escapediFrameURLCode = escapediFrameURL.replace(/</g,'&lt;');
 		var escapediFrameURLCodeFinal = escapediFrameURLCode.replace(/>/g,'&gt;');
 
 		//alert(escapediFrameURL);
-		$("#slideshareembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedContainerCSS + embedContainerDivOpen + escapediFrameURLCodeFinal + embedContainerDivClose + "</textarea>");
-		$("#slidesharepreview").html( previewLabel + previewPrefix + escapediFrameURL + previewSuffix );
+		$("#genericembedNote").fadeIn();
+		$("#genericembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedContainerCSS + embedContainerDivOpen + escapediFrameURLCodeFinal + embedContainerDivClose + "</textarea>");
+		$("#genericpreview").html( previewLabel + previewPrefix + escapediFrameURL + previewSuffix );
 
 	}
-	
-	function createUStreamEmbed(){
-		var ustreamURL = $("#ustream-url").val();
-		var escapediFrameURL = ustreamURL.replace(/\"/g,'\'');
-		var escapediFrameURLCode = escapediFrameURL.replace(/</g,'&lt;');
-		var escapediFrameURLCodeFinal = escapediFrameURLCode.replace(/>/g,'&gt;');
-
-		//alert(escapediFrameURL);
-		$("#ustreamembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedContainerCSS + embedContainerDivOpen + escapediFrameURLCodeFinal + embedContainerDivClose + "</textarea>");
-		$("#ustreampreview").html( previewLabel + previewPrefix + escapediFrameURL + previewSuffix );
-
-	}
-	
+		
 	</script>
 	
   </head>
@@ -167,8 +156,7 @@
 	              <li class="active"><a href="#youtube" data-toggle="tab">YouTube</a></li>
 	              <li><a href="#vimeo" data-toggle="tab">Vimeo</a></li>
 	              <li><a href="#googlemaps" data-toggle="tab">Google Maps</a></li>
-	              <li><a href="#slideshare" data-toggle="tab">Slideshare</a></li>
-	              <li><a href="#ustream" data-toggle="tab">UStream</a></li>
+	              <li><a href="#iframe" data-toggle="tab">Generic iFrame Embed</a></li>
 	              <li><a href="#more" data-toggle="tab">More</a></li>
               </ul>
 			  
@@ -225,42 +213,23 @@
 				  				
                 </div>
 
-				<div class="tab-pane fade well" id="slideshare">
+				<div class="tab-pane fade well" id="iframe">
 										
 					<form>
 					  <fieldset>
-					    <label>Slideshare (iFrame Embed):</label>
+					    <label>Generic iFrame Embed:</label>
 						<div class="input-append">
-					    	<input class="span4 inputfix" id="slideshare-url" type="text" placeholder="<iframe src='http://www.slideshare.net/slideshow/embed_code/16396881' width='427' height='356' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' style='border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px' allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe> <div style='margin-bottom:5px'> <strong> <a href='http://www.slideshare.net/XPLAIN/publisher-the-new-marketeer-16396881' title='Publisher, the new marketeer' target='_blank'>Publisher, the new marketeer</a> </strong> from <strong><a href='http://www.slideshare.net/XPLAIN' target='_blank'>XPLAIN</a></strong> </div>
-">
-					    	<a class="btn btn-primary" onclick="createSlideshareEmbed();">Embed</a>
+					    	<input class="span4 inputfix" id="generic-url" type="text" placeholder="<iframe src='http://www.site.com/media/embed_code/16396881' width='425' height='350'></iframe>">
+					    	<a class="btn btn-primary" onclick="createGenericEmbed();">Embed</a>
 						</div>
 					  </fieldset>
 					</form>
   	  			  
-				  <div id="slidesharepreview"></div>
+				  <div id="genericpreview"></div>
 			  
-  	  			  <div class="code" id="slideshareembedCode"></div>
-				  				
-                </div>
-
-
-
-<div class="tab-pane fade well" id="ustream">
-										
-					<form>
-					  <fieldset>
-					    <label>UStream (iFrame Embed):</label>
-						<div class="input-append">
-					    	<input class="span4 inputfix" id="ustream-url" type="text" placeholder="<iframe width='480' height='302' src='http://www.ustream.tv/embed/13027369?v=3&wmode=direct' scrolling='no' frameborder='0' style='border: 0px none transparent;'>    </iframe>">
-					    	<a class="btn btn-primary" onclick="createUStreamEmbed();">Embed</a>
-						</div>
-					  </fieldset>
-					</form>
-  	  			  
-				  <div id="ustreampreview"></div>
-			  
-  	  			  <div class="code" id="ustreamembedCode"></div>
+				  <div id="genericembedNote" class="alert alert-info" style="display:none; margin-top:15px"><strong>NOTE:</strong> You may want to remove any hard coded values you see below with regards to "width" and "height" in the below code. These values may be in the iFrame SRC parameters, or in the iFrame query string. Experiment to see what works best.</div>
+				  
+  	  			  <div class="code" id="genericembedCode"></div>
 				  				
                 </div>
 
