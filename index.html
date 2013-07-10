@@ -12,7 +12,7 @@
 	
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/uri.js"></script>
 	
@@ -31,6 +31,14 @@
 		overflow: hidden; 
 	} 
 
+	.embed-container-squarish {
+		position: relative; 
+		padding-bottom: 120%; 
+		padding-top: 30px; 
+		height: 0; 
+		overflow: hidden; 
+	} 
+	
 	.embed-container iframe, 
 	.embed-container object, 
 	.embed-container embed { 
@@ -65,11 +73,13 @@
 	
 	var embedLabel = "<br/><p class='control-label'>Embed code:</p>";
 	var embedContainerCSS = "&lt;style&gt;.embed-container {position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;} .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
+	var embedSquarishContainerCSS = "&lt;style&gt;.embed-container {position: relative; padding-bottom: 120%; padding-top: 30px; height: 0; overflow: hidden;} .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
 	var embedContainerDivOpen = "&lt;div class='embed-container'&gt;";
 	var embedContainerDivClose = "&lt;/div&gt;";
 	
 	var previewLabel = "<p class='control-label'>Preview:</p>";
 	var previewPrefix = "<div class='embed-container'>";
+	var previewPrefixSquarish = "<div id='squarish' class='embed-container'>";
 	var previewSuffix = "</div>";
 
 	function createYouTubeEmbed(){
@@ -117,6 +127,16 @@
 
 	}
 
+	function createInstagramEmbed(){
+		var instagramURL = $("#instagram-url").val();
+		var shortinstagramURL = instagramURL.slice(5);
+		var instagramEmbedURL = "<iframe src='"+shortinstagramURL+"embed/' frameborder='0' scrolling='no' allowtransparency='true'></iframe>";
+		$("#instagramembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedSquarishContainerCSS + embedContainerDivOpen + instagramEmbedURL + embedContainerDivClose + "</textarea>");
+		$("#instagrampreview").html( previewLabel + previewPrefixSquarish + instagramEmbedURL + previewSuffix );
+		$("#squarish").css( "padding-bottom", "120%" );
+		
+	}
+	
 	function createGenericEmbed(){
 		var genericURL = $("#generic-url").val();
 		var escapediFrameURL = genericURL.replace(/\"/g,'\'');
@@ -156,7 +176,8 @@
 	              <li class="active"><a href="#youtube" data-toggle="tab">YouTube</a></li>
 	              <li><a href="#vimeo" data-toggle="tab">Vimeo</a></li>
 	              <li><a href="#googlemaps" data-toggle="tab">Google Maps</a></li>
-	              <li><a href="#iframe" data-toggle="tab">Generic iFrame Embed</a></li>
+	              <li><a href="#instagram" data-toggle="tab">Instagram</a></li>
+	              <li><a href="#iframe" data-toggle="tab">Generic iFrame</a></li>
 	              <li><a href="#more" data-toggle="tab">More</a></li>
               </ul>
 			  
@@ -233,6 +254,24 @@
 				  				
                 </div>
 
+                <div class="tab-pane fade well" id="instagram">
+					
+					<form>
+					  <fieldset>
+					    <label>Instagram URL:</label>
+						<div class="input-append">
+					    	<input class="span4 inputfix" id="instagram-url" type="text" placeholder="http://instagram.com/p/bWaCmcghHO/">
+					    	<a class="btn btn-primary" onclick="createInstagramEmbed();">Embed</a>
+						</div>
+					  </fieldset>
+					</form>
+         			  
+  	  			  <div id="instagrampreview"></div>
+				
+	  			  <div class="code" id="instagramembedCode"></div>
+  
+				</div>
+				
                 <div class="tab-pane fade well" id="more">
 										
 					<p><strong>Great news!</strong> The embed codes offered by these services are already responsive:</p>
