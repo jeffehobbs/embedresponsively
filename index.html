@@ -130,6 +130,12 @@
 	function createInstagramEmbed(){
 		var instagramURL = $("#instagram-url").val();
 		var shortinstagramURL = instagramURL.slice(5);
+		var last_character = shortinstagramURL[shortinstagramURL.length-1];
+		
+		if (last_character!="/") {
+			shortinstagramURL = shortinstagramURL + "/";
+		}
+		
 		var instagramEmbedURL = "<iframe src='"+shortinstagramURL+"embed/' frameborder='0' scrolling='no' allowtransparency='true'></iframe>";
 		$("#instagramembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedSquarishContainerCSS + embedContainerDivOpen + instagramEmbedURL + embedContainerDivClose + "</textarea>");
 		$("#instagrampreview").html( previewLabel + previewPrefixSquarish + instagramEmbedURL + previewSuffix );
