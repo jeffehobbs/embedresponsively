@@ -114,6 +114,16 @@
 		$("#vimeopreview").html( previewLabel + previewPrefix + vimeopreview + previewSuffix );
 
 	}
+
+	function createDailymotionEmbed(){
+		var dailymotionURL = $("#dailymotion-url").val();
+		var dailymotionID = (m =dailymotionURL.match(new RegExp("\/video\/([^_?#]+).*?"))) ? m[1] : void 0;
+		var dailymotionEmbed = "&lt;iframe src='http://www.dailymotion.com/embed/video/" + dailymotionID + "' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen&gt;&lt;/iframe&gt;";
+		var dailymotionpreview = "<iframe src='http://www.dailymotion.com/embed/video/" + dailymotionID + "'  frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";
+		
+		$("#dailymotionembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedContainerCSS + embedContainerDivOpen + dailymotionEmbed + embedContainerDivClose + "</textarea>");
+		$("#dailymotionpreview").html( previewLabel + previewPrefix + dailymotionpreview + previewSuffix );
+	}
 	
 	function createGoogleMapsEmbed(){
 		var googlemapsURL = $("#googlemaps-url").val();
@@ -172,7 +182,7 @@
 	    
 	<div class="container">
 	  <div class="row">
-	    <div class="span6 offset3">
+	    <div class="span8 offset2">
 			
 			<div class="visible-desktop" style="height:60px"></div>
 			
@@ -181,6 +191,7 @@
               <ul id="leTab" class="nav nav-pills">
 	              <li class="active"><a href="#youtube" data-toggle="tab">YouTube</a></li>
 	              <li><a href="#vimeo" data-toggle="tab">Vimeo</a></li>
+	              <li><a href="#dailymotion" data-toggle="tab">Dailymotion</a></li>
 	              <li><a href="#googlemaps" data-toggle="tab">Google Maps</a></li>
 	              <li><a href="#instagram" data-toggle="tab">Instagram</a></li>
 	              <li><a href="#iframe" data-toggle="tab">Generic iFrame</a></li>
@@ -222,6 +233,24 @@
   	  			  <div class="code" id="vimeoembedCode"></div>
 				  				                
 				</div>
+                <div class="tab-pane fade well" id="dailymotion">
+					
+					<form>
+					  <fieldset>
+					    <label>Dailymotion URL:</label>
+						<div class="input-append">
+							<input class="span4 inputfix" id="dailymotion-url" type="text" placeholder="http://dailymotion.com/video/xsr67x">
+					    	<a class="btn btn-primary" onclick="createDailymotionEmbed();">Embed</a>
+						</div>
+					  </fieldset>
+					</form>
+  	  			  
+				  <div id="dailymotionpreview"></div>
+			  
+  	  			  <div class="code" id="dailymotionembedCode"></div>
+				  				            
+				</div>
+
                 <div class="tab-pane fade well" id="googlemaps">
 										
 					<form>
