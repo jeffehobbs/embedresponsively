@@ -72,7 +72,7 @@
 	<script>
 	
 	var embedLabel = "<br/><p class='control-label'>Embed code:</p>";
-	var embedContainerCSS = "&lt;style&gt;.embed-container { position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden; width: 100% } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
+	var embedContainerCSS = "&lt;style&gt;.embed-container { position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden; max-width: 100%; height: auto; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
 	var embedSquarishContainerCSS = "&lt;style&gt;.embed-container {position: relative; padding-bottom: 120%; padding-top: 30px; height: 0; overflow: hidden;} .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
 	var embedContainerDivOpen = "&lt;div class='embed-container'&gt;";
 	var embedContainerDivClose = "&lt;/div&gt;";
@@ -173,7 +173,7 @@
 	
 	  <div class="navbar navbar-fixed-top navbar-inverse">
 	    <div class="navbar-inner">
-	      <a class="brand" href="#">&nbsp;<strong>Embed Responsively</strong></a>
+	      <a class="brand" href="#">&nbsp;Embed Responsively</a>
 		  <form class="navbar-form pull-right">
 		    <a href="#about" role="button" class="btn btn-inverse" data-toggle="modal">About</a>&nbsp;
 		  </form>
@@ -205,7 +205,7 @@
 					  <fieldset>
 					    <label>YouTube URL:</label>
 						<div class="input-append">
-					    	<input class="span4 inputfix" id="youtube-url" type="text" placeholder="youtube.com/watch?v=QILiHiTD3uc">
+					    	<input class="span6 inputfix" id="youtube-url" type="text" placeholder="youtube.com/watch?v=QILiHiTD3uc">
 					    	<a class="btn btn-primary" onclick="createYouTubeEmbed();">Embed</a>
 						</div>
 					  </fieldset>
@@ -222,7 +222,7 @@
 					  <fieldset>
 					    <label>Vimeo URL:</label>
 						<div class="input-append">
-							<input class="span4 inputfix" id="vimeo-url" type="text" placeholder="http://vimeo.com/56810854">
+							<input class="span6 inputfix" id="vimeo-url" type="text" placeholder="http://vimeo.com/56810854">
 					    	<a class="btn btn-primary" onclick="createVimeoEmbed();">Embed</a>
 						</div>
 					  </fieldset>
@@ -239,7 +239,7 @@
 					  <fieldset>
 					    <label>Dailymotion URL:</label>
 						<div class="input-append">
-							<input class="span4 inputfix" id="dailymotion-url" type="text" placeholder="http://dailymotion.com/video/xsr67x">
+							<input class="span6 inputfix" id="dailymotion-url" type="text" placeholder="http://dailymotion.com/video/xsr67x">
 					    	<a class="btn btn-primary" onclick="createDailymotionEmbed();">Embed</a>
 						</div>
 					  </fieldset>
@@ -257,7 +257,7 @@
 					  <fieldset>
 					    <label>Google Maps (iFrame Embed):</label>
 						<div class="input-append">
-					    	<input class="span4 inputfix" id="googlemaps-url" type="text" placeholder="<iframe width='425' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Statue+of+Liberty+National+Monument,+New+York,+NY&aq=0&oq=statue+of+&sll=37.6,-95.665&sspn=45.335781,50.976563&t=h&ie=UTF8&hq=Statue+of+Liberty+National+Monument,+New+York,+NY&ll=40.689268,-74.044738&spn=0.016921,0.032015&output=embed'></iframe>">
+					    	<input class="span6 inputfix" id="googlemaps-url" type="text" placeholder="<iframe width='425' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Statue+of+Liberty+National+Monument,+New+York,+NY&aq=0&oq=statue+of+&sll=37.6,-95.665&sspn=45.335781,50.976563&t=h&ie=UTF8&hq=Statue+of+Liberty+National+Monument,+New+York,+NY&ll=40.689268,-74.044738&spn=0.016921,0.032015&output=embed'></iframe>">
 					    	<a class="btn btn-primary" onclick="createGoogleMapsEmbed();">Embed</a>
 						</div>
 					  </fieldset>
@@ -275,7 +275,7 @@
 					  <fieldset>
 					    <label>Generic iFrame Embed:</label>
 						<div class="input-append">
-					    	<input class="span4 inputfix" id="generic-url" type="text" placeholder="<iframe src='http://www.site.com/media/embed_code/16396881' width='425' height='350'></iframe>">
+					    	<input class="span6 inputfix" id="generic-url" type="text" placeholder="<iframe src='http://www.site.com/media/embed_code/16396881' width='425' height='350'></iframe>">
 					    	<a class="btn btn-primary" onclick="createGenericEmbed();">Embed</a>
 						</div>
 					  </fieldset>
@@ -346,7 +346,7 @@
 				
 	  </div>
 	  <div class="modal-footer">
-  	    <p class="pull-left">Version 1.1 (added Instagram)</p>  
+  	    <p class="pull-left">Version 1.2 (added Dailymotion, thanks <a href="https://github.com/dharFr">dhar</a>!)</p>  
 	    <a href="#" class="btn btn-primary" data-dismiss="modal">OK</a>
 	  </div>
 	</div>
