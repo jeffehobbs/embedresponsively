@@ -73,6 +73,7 @@
 	
 	var embedLabel = "<br/><p class='control-label'>Embed code:</p>";
 	var embedContainerCSS = "&lt;style&gt;.embed-container { position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden; max-width: 100%; height: auto; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
+	var embedSquareContainerCSS = "&lt;style&gt;.embed-container {position: relative; padding-bottom: 100%; padding-top: 30px; height: 0; overflow: hidden;} .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
 	var embedSquarishContainerCSS = "&lt;style&gt;.embed-container {position: relative; padding-bottom: 120%; padding-top: 30px; height: 0; overflow: hidden;} .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
 	var embedContainerDivOpen = "&lt;div class='embed-container'&gt;";
 	var embedContainerDivClose = "&lt;/div&gt;";
@@ -152,7 +153,25 @@
 		$("#squarish").css( "padding-bottom", "120%" );
 		
 	}
+
+	function createVineEmbed(){
+		
+		var vineURL = $("#vine-url").val();
+		var shortvineURL = vineURL;
+		var last_character = shortvineURL[shortvineURL.length-1];
+		var vineScript= "&lt;script async src='//platform.vine.co/static/scripts/embed.js' charset='utf-8'&gt;&lt;/script&gt;";
 	
+		if (last_character!="/") {
+			shortvineURL = shortvineURL + "/";
+		}
+		
+		var vineEmbedURL = "<iframe width='100%' src='"+shortvineURL+"embed/simple' frameborder='0' scrolling='no' allowtransparency='true'></iframe>"+vineScript;
+		$("#vineembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedSquareContainerCSS + embedContainerDivOpen + vineEmbedURL + embedContainerDivClose + "</textarea>");
+		$("#vinepreview").html( previewLabel + previewPrefixSquarish + vineEmbedURL + previewSuffix );
+		$("#squarish").css( "padding-bottom", "120%" );
+		
+	}
+		
 	function createGenericEmbed(){
 		var genericURL = $("#generic-url").val();
 		var escapediFrameURL = genericURL.replace(/\"/g,'\'');
@@ -194,6 +213,7 @@
 	              <li><a href="#dailymotion" data-toggle="tab">Dailymotion</a></li>
 	              <li><a href="#googlemaps" data-toggle="tab">Google Maps</a></li>
 	              <li><a href="#instagram" data-toggle="tab">Instagram</a></li>
+	              <li><a href="#vine" data-toggle="tab">Vine</a></li>
 	              <li><a href="#iframe" data-toggle="tab">Generic iFrame</a></li>
 	              <li><a href="#more" data-toggle="tab">More</a></li>
               </ul>
@@ -305,6 +325,24 @@
 				
 	  			  <div class="code" id="instagramembedCode"></div>
   
+				</div>
+				
+                <div class="tab-pane fade well" id="vine">
+					
+					<form>
+					  <fieldset>
+					    <label>Vine URL:</label>
+						<div class="input-append">
+							<input class="span6 inputfix" id="vine-url" type="text" placeholder="https://vine.co/v/hhJQzrWthqb">
+					    	<a class="btn btn-primary" onclick="createVineEmbed();">Embed</a>
+						</div>
+					  </fieldset>
+					</form>
+  	  			  
+				  <div id="vinepreview"></div>
+			  
+  	  			  <div class="code" id="vineembedCode"></div>
+				  				                
 				</div>
 				
                 <div class="tab-pane fade well" id="more">
