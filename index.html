@@ -107,9 +107,17 @@
 
 	function createVimeoEmbed(){
 		var vimeoURL = $("#vimeo-url").val();
-		var vimeoID = vimeoURL.substring(17);
-		var vimeoEmbed = "&lt;iframe src='http://player.vimeo.com/video/" + vimeoID + "' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen&gt;&lt;/iframe&gt;";
-		var vimeopreview = "<iframe src='http://player.vimeo.com/video/" + vimeoID + "'  frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";
+		var protocol = vimeoURL.slice(0,5);
+		if (protocol == "https"){
+			//then the video is served via https, doy
+			var vimeoID = vimeoURL.substring(18);
+		} else {
+			protocol = "http";
+			var vimeoID = vimeoURL.substring(17);
+		}
+	
+		var vimeoEmbed = "&lt;iframe src='"+protocol+"://player.vimeo.com/video/" + vimeoID + "' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen&gt;&lt;/iframe&gt;";
+		var vimeopreview = "<iframe src='"+protocol+"://player.vimeo.com/video/" + vimeoID + "'  frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";
 
 		$("#vimeoembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedContainerCSS + embedContainerDivOpen + vimeoEmbed + embedContainerDivClose + "</textarea>");
 		$("#vimeopreview").html( previewLabel + previewPrefix + vimeopreview + previewSuffix );
