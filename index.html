@@ -72,7 +72,7 @@
 	<script>
 	
 	var embedLabel = "<br/><p class='control-label'>Embed code:</p>";
-	var embedContainerCSS = "&lt;style&gt;.embed-container { position: relative; padding-bottom: 56.25%; padding-top: 30px; overflow: hidden; max-width: 100%; height: auto; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
+	var embedContainerCSS = "&lt;style&gt;.embed-container { position: relative; padding-bottom: 56.25%; padding-top: 30px; overflow: hidden; max-width: 100%; height: auto; z-index: 0; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
 	var embedSquareContainerCSS = "&lt;style&gt;.embed-container {position: relative; padding-bottom: 100%; padding-top: 30px; height: 0; overflow: hidden;} .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
 	var embedSquarishContainerCSS = "&lt;style&gt;.embed-container {position: relative; padding-bottom: 120%; padding-top: 30px; height: 0; overflow: hidden;} .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
 	var embedContainerDivOpen = "&lt;div class='embed-container'&gt;";
@@ -97,7 +97,7 @@
 			var youtubeID = youtubeURL.substring(16);
 		}
 		
-		var youtubeEmbed = "&lt;iframe src='http://www.youtube.com/embed/" + youtubeID + "' frameborder='0' allowfullscreen&gt;&lt;/iframe&gt;";
+		var youtubeEmbed = "&lt;iframe src='//www.youtube.com/embed/" + youtubeID + "?wmode=transparent' frameborder='0' allowfullscreen&gt;&lt;/iframe&gt;";
 		var youtubepreview = "<iframe src='http://www.youtube.com/embed/" + youtubeID + "' frameborder='0' allowfullscreen></iframe>";
 
 		$("#youtubeembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedContainerCSS + embedContainerDivOpen + youtubeEmbed + embedContainerDivClose + "</textarea>");
