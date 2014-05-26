@@ -8,12 +8,11 @@
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 	
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="css/bootstrap3.min.css" rel="stylesheet">
 	<script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap3.min.js"></script>   
     <script src="js/uri.js"></script>
 	
 	<style>
@@ -22,11 +21,11 @@
 		font-family: "Open Sans", sans-serif !important;
 		font-weight: "300";
 	}
-
+	
 	.embed-container {
 		position: relative; 
 		padding-bottom: 56.25%; 
-		padding-top: 30px; 
+		/*padding-top: 30px; */
 		height: 0; 
 		overflow: hidden; 
 	} 
@@ -34,7 +33,7 @@
 	.embed-container-squarish {
 		position: relative; 
 		padding-bottom: 120%; 
-		padding-top: 30px; 
+		/*padding-top: 30px; */
 		height: 0; 
 		overflow: hidden; 
 	} 
@@ -51,8 +50,21 @@
 	
 	.codebox {
 		width: 97%;
-		font-family:monospace !important; 
-		font-size:11px;
+		font-family: monospace !important; 
+		font-size: 14px;
+	}
+	
+	.pad-right {
+			padding-right: 15px;
+	}
+	
+	.well {
+			min-height: 120px;
+			margin-bottom: 70px;
+	}
+	
+	.control-label {
+			padding-top:5px;
 	}
 	
 	@media only screen and (max-device-width: 480px) {
@@ -72,15 +84,18 @@
 	<script>
 	
 	var embedLabel = "<br/><p class='control-label'>Embed code:</p>";
-	var embedContainerCSS = "&lt;style&gt;.embed-container { position: relative; padding-bottom: 56.25%; padding-top: 30px; overflow: hidden; max-width: 100%; height: auto; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
-	var embedSquareContainerCSS = "&lt;style&gt;.embed-container {position: relative; padding-bottom: 100%; padding-top: 30px; height: 0; overflow: hidden;} .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
-	var embedSquarishContainerCSS = "&lt;style&gt;.embed-container {position: relative; padding-bottom: 120%; padding-top: 30px; height: 0; overflow: hidden;} .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
+	var embedContainerCSS = "&lt;style&gt;.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
+	var embedGettyContainerCSSFront = "&lt;style&gt;.embed-container { position: relative; padding-bottom: ";
+	var embedGettyContainerCSSBack = "%; height: 0; overflow: hidden; max-width: 100%; height: auto; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
+	var embedSquareContainerCSS = "&lt;style&gt;.embed-container {position: relative; padding-bottom: 100%; height: 0; overflow: hidden;} .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
+	var embedSquarishContainerCSS = "&lt;style&gt;.embed-container {position: relative; padding-bottom: 120%; height: 0; overflow: hidden;} .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
 	var embedContainerDivOpen = "&lt;div class='embed-container'&gt;";
 	var embedContainerDivClose = "&lt;/div&gt;";
 	
 	var previewLabel = "<p class='control-label'>Preview:</p>";
 	var previewPrefix = "<div class='embed-container'>";
 	var previewPrefixSquarish = "<div id='squarish' class='embed-container'>";
+	var previewPrefixGettyFront = "<div id='getty' class='embed-container'";
 	var previewSuffix = "</div>";
 
 	function createYouTubeEmbed(){
@@ -127,9 +142,9 @@
 	function createDailymotionEmbed(){
 		var dailymotionURL = $("#dailymotion-url").val();
 		var dailymotionID = (m =dailymotionURL.match(new RegExp("\/video\/([^_?#]+).*?"))) ? m[1] : void 0;
-		var dailymotionEmbed = "&lt;iframe src='http://www.dailymotion.com/embed/" + (dailymotionID ? 'video/'+dailymotionID : '') + "' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen&gt;&lt;/iframe&gt;";
-		var dailymotionpreview = "<iframe src='http://www.dailymotion.com/embed/" + (dailymotionID ? 'video/'+dailymotionID : '') + "'  frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";
-
+		var dailymotionEmbed = "&lt;iframe src='http://www.dailymotion.com/embed/video/" + dailymotionID + "' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen&gt;&lt;/iframe&gt;";
+		var dailymotionpreview = "<iframe src='http://www.dailymotion.com/embed/video/" + dailymotionID + "'  frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";
+		
 		$("#dailymotionembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedContainerCSS + embedContainerDivOpen + dailymotionEmbed + embedContainerDivClose + "</textarea>");
 		$("#dailymotionpreview").html( previewLabel + previewPrefix + dailymotionpreview + previewSuffix );
 	}
@@ -180,6 +195,28 @@
 		
 	}
 		
+	function createGettyEmbed(){
+		var gettyURL = $("#getty-url").val();
+		var escapedGettyURL = gettyURL.replace(/\"/g,'\'');
+		var escapedGettyURLCode = escapedGettyURL.replace(/</g,'&lt;');
+		var escapedGettyURLCodeFinal = escapedGettyURLCode.replace(/>/g,'&gt;');
+	
+		$("#gettyplaceholder").html(gettyURL);
+		
+
+		var src = $("#gettyplaceholder").find("iframe").attr("src")
+		var width = $("#gettyplaceholder").find("iframe").attr("width")
+		var height = $("#gettyplaceholder").find("iframe").attr("height")
+		var paddingBottom = ((height / width)*100);
+						
+		var previewPrefixGettyBack = " style='padding-bottom:" + paddingBottom + "% !important'>";
+		
+		$("#gettypreview").html( previewLabel + previewPrefixGettyFront + previewPrefixGettyBack + escapedGettyURL + previewSuffix );
+		
+		$("#gettyembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedGettyContainerCSSFront + paddingBottom + embedGettyContainerCSSBack + embedContainerDivOpen + escapedGettyURLCodeFinal + embedContainerDivClose + "</textarea>");
+	
+	}
+	
 	function createGenericEmbed(){
 		var genericURL = $("#generic-url").val();
 		var escapediFrameURL = genericURL.replace(/\"/g,'\'');
@@ -198,30 +235,38 @@
   </head>
   <body>
 	
-	  <div class="navbar navbar-fixed-top navbar-inverse">
-	    <div class="navbar-inner">
-	      <a class="brand" href="#">&nbsp;Embed Responsively</a>
-		  <form class="navbar-form pull-right">
-		    <a href="#about" role="button" class="btn btn-inverse" data-toggle="modal">About</a>&nbsp;
-		  </form>
-	    </div>
-	  </div>
+	  <nav class="navbar navbar-static-top navbar-inverse" role="navigation">
+	    <div class="container-fluid">
+	      <!-- Brand and toggle get grouped for better mobile display -->
+	      <div class="navbar-header">
+	        <a class="navbar-brand" href="#about" data-toggle="modal" data-target="#about">Embed Responsively</a>
+	      </div>
+
+	      <!-- Collect the nav links, forms, and other content for toggling -->
+	      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
+	        <ul class="nav navbar-nav navbar-right pad-right">
+			    <a href="#about" role="button" class="btn btn-info navbar-btn" data-toggle="modal" data-target="#about">About</a>
+	        </ul>
+	      </div><!-- /.navbar-collapse -->
+	    </div><!-- /.container-fluid -->
+	  </nav>
 	    
 	<div class="container">
 	  <div class="row">
-	    <div class="span8 offset2">
+	    <div class="col-md-10 col-md-offset-1">
 			
-			<div class="visible-desktop" style="height:60px"></div>
+			<div class="visible-desktop" style="height: 12px"></div>
 			
             <p>Select a media source below:</p>
 
-              <ul id="leTab" class="nav nav-pills">
+              <ul id="leTab" class="nav nav-pills" style="margin-bottom: 12px">
 	              <li class="active"><a href="#youtube" data-toggle="tab">YouTube</a></li>
 	              <li><a href="#vimeo" data-toggle="tab">Vimeo</a></li>
 	              <li><a href="#dailymotion" data-toggle="tab">Dailymotion</a></li>
 	              <li><a href="#googlemaps" data-toggle="tab">Google Maps</a></li>
 	              <li><a href="#instagram" data-toggle="tab">Instagram</a></li>
 	              <li><a href="#vine" data-toggle="tab">Vine</a></li>
+	              <li><a href="#getty" data-toggle="tab">Getty Images</a></li>
 	              <li><a href="#iframe" data-toggle="tab">Generic iFrame</a></li>
 	              <li><a href="#more" data-toggle="tab">More</a></li>
               </ul>
@@ -231,11 +276,15 @@
 					
 					<form>
 					  <fieldset>
-					    <label>YouTube URL:</label>
-						<div class="input-append">
-					    	<input class="span6 inputfix" id="youtube-url" type="text" placeholder="youtube.com/watch?v=QILiHiTD3uc">
-					    	<a class="btn btn-primary" onclick="createYouTubeEmbed();">Embed</a>
-						</div>
+					    <label>YouTube Page URL:</label>
+						
+						<div class="input-group">
+						      <input type="text" id="youtube-url" class="form-control" value="http://youtube.com/watch?v=QILiHiTD3uc">
+						      <span class="input-group-btn">
+						        <button class="btn btn-primary" onclick="createYouTubeEmbed();" type="button">Embed</button>
+						      </span>
+						    </div><!-- /input-group -->
+							
 					  </fieldset>
 					</form>
          			  
@@ -248,11 +297,15 @@
 					
 					<form>
 					  <fieldset>
-					    <label>Vimeo URL:</label>
-						<div class="input-append">
-							<input class="span6 inputfix" id="vimeo-url" type="text" placeholder="http://vimeo.com/56810854">
-					    	<a class="btn btn-primary" onclick="createVimeoEmbed();">Embed</a>
-						</div>
+					    <label>Vimeo Page URL:</label>
+						
+						<div class="input-group">
+						      <input type="text" id="vimeo-url" class="form-control" value="http://vimeo.com/66140585">
+						      <span class="input-group-btn">
+						        <button class="btn btn-primary" onclick="createVimeoEmbed();" type="button">Embed</button>
+						      </span>
+						    </div><!-- /input-group -->
+
 					  </fieldset>
 					</form>
   	  			  
@@ -265,11 +318,15 @@
 					
 					<form>
 					  <fieldset>
-					    <label>Dailymotion URL:</label>
-						<div class="input-append">
-							<input class="span6 inputfix" id="dailymotion-url" type="text" placeholder="http://dailymotion.com/video/xsr67x">
-					    	<a class="btn btn-primary" onclick="createDailymotionEmbed();">Embed</a>
-						</div>
+					    <label>Dailymotion Page URL:</label>
+						
+						<div class="input-group">
+						      <input type="text" id="dailymotion-url" class="form-control" value="http://dailymotion.com/video/xsr67x">
+						      <span class="input-group-btn">
+						        <button class="btn btn-primary" onclick="createDailymotionEmbed();" type="button">Embed</button>
+						      </span>
+						    </div><!-- /input-group -->
+
 					  </fieldset>
 					</form>
   	  			  
@@ -283,11 +340,15 @@
 										
 					<form>
 					  <fieldset>
-					    <label>Google Maps (iFrame Embed):</label>
-						<div class="input-append">
-					    	<input class="span6 inputfix" id="googlemaps-url" type="text" placeholder="<iframe width='425' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Statue+of+Liberty+National+Monument,+New+York,+NY&aq=0&oq=statue+of+&sll=37.6,-95.665&sspn=45.335781,50.976563&t=h&ie=UTF8&hq=Statue+of+Liberty+National+Monument,+New+York,+NY&ll=40.689268,-74.044738&spn=0.016921,0.032015&output=embed'></iframe>">
-					    	<a class="btn btn-primary" onclick="createGoogleMapsEmbed();">Embed</a>
-						</div>
+					    <label>Google Maps iFrame Embed:</label>
+						
+						<div class="input-group">
+						      <input type="text" id="googlemaps-url" class="form-control" value="<iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387144.0075834208!2d-73.97800349999999!3d40.7056308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY!5e0!3m2!1sen!2sus!4v1394298866288' width='600' height='450' frameborder='0' style='border:0'></iframe>">
+						      <span class="input-group-btn">
+						        <button class="btn btn-primary" onclick="createGoogleMapsEmbed();" type="button">Embed</button>
+						      </span>
+						    </div><!-- /input-group -->
+							
 					  </fieldset>
 					</form>
   	  			  
@@ -302,10 +363,14 @@
 					<form>
 					  <fieldset>
 					    <label>Generic iFrame Embed:</label>
-						<div class="input-append">
-					    	<input class="span6 inputfix" id="generic-url" type="text" placeholder="<iframe src='http://www.site.com/media/embed_code/16396881' width='425' height='350'></iframe>">
-					    	<a class="btn btn-primary" onclick="createGenericEmbed();">Embed</a>
-						</div>
+						
+						<div class="input-group">
+						      <input type="text" id="generic-url" class="form-control" value="<iframe src='http://alistapart.com/article/responsive-web-design/' style='border:0'></iframe>">
+						      <span class="input-group-btn">
+						        <button class="btn btn-primary" onclick="createGenericEmbed();" type="button">Embed</button>
+						      </span>
+						    </div><!-- /input-group -->
+							
 					  </fieldset>
 					</form>
   	  			  
@@ -321,11 +386,15 @@
 					
 					<form>
 					  <fieldset>
-					    <label>Instagram URL:</label>
-						<div class="input-append">
-					    	<input class="span4 inputfix" id="instagram-url" type="text" placeholder="http://instagram.com/p/bWaCmcghHO/">
-					    	<a class="btn btn-primary" onclick="createInstagramEmbed();">Embed</a>
-						</div>
+					    <label>Instagram Page URL:</label>
+						
+						<div class="input-group">
+						      <input type="text" id="instagram-url" class="form-control" value="http://instagram.com/p/dnQi4EGuZx/">
+						      <span class="input-group-btn">
+						        <button class="btn btn-primary" onclick="createInstagramEmbed();" type="button">Embed</button>
+						      </span>
+						    </div><!-- /input-group -->
+						
 					  </fieldset>
 					</form>
          			  
@@ -340,10 +409,14 @@
 					<form>
 					  <fieldset>
 					    <label>Vine URL:</label>
-						<div class="input-append">
-							<input class="span6 inputfix" id="vine-url" type="text" placeholder="https://vine.co/v/hhJQzrWthqb">
-					    	<a class="btn btn-primary" onclick="createVineEmbed();">Embed</a>
-						</div>
+						
+						<div class="input-group">
+						      <input type="text" id="vine-url" class="form-control" value="https://vine.co/v/h9eAhKWzJlv/">
+						      <span class="input-group-btn">
+						        <button class="btn btn-primary" onclick="createVineEmbed();" type="button">Embed</button>
+						      </span>
+						    </div><!-- /input-group -->
+
 					  </fieldset>
 					</form>
   	  			  
@@ -353,18 +426,46 @@
 				  				                
 				</div>
 				
+				<!-- next -->
+				
+                <div class="tab-pane fade well" id="getty">
+					
+					<form>
+					  <fieldset>
+					    <label>Getty Image Embed:</label>
+						
+						<div class="input-group">
+						      <input type="text" id="getty-url" class="form-control" value="<iframe src='//embed.gettyimages.com/embed/137668307?et=0kKQE3OQU06k6Y-tD9FdZA&sig=MuEspy0rbDdvg7lpUAk77Pwaha2oc1_tUWsZTdH6IHE=' width='594' height='475' frameborder='0' scrolling='no'></iframe>">
+						      <span class="input-group-btn">
+						        <button class="btn btn-primary" onclick="createGettyEmbed();" type="button">Embed</button>
+						      </span>
+						    </div><!-- /input-group -->
+
+					  </fieldset>
+					</form>
+  	  			  
+  				  <div id="gettyplaceholder" style="display:none"></div>
+				  
+				  <div id="gettypreview"></div>
+			  
+  	  			  <div class="code" id="gettyembedCode"></div>
+				  				                
+				</div>
+				
+				<!-- next -->
+				
                 <div class="tab-pane fade well" id="more">
 										
 					<p><strong>Great news!</strong> The embed codes offered by these services are already responsive:</p>
 					
 					<ul>
-						<li><a href="http://scribd.com/">Scribd</a> (select 'Autosize')</li>
-						<li><a href="http://soundcloud.com/">SoundCloud</a></li>
-						<li><a href="http://storify.com/">Storify</a></li>
-						<li><a href="http://twitter.com/">Twitter</a></li>
+						<li><a target="_blank" href="http://scribd.com/">Scribd</a> (select 'Autosize')</li>
+						<li><a target="_blank" href="http://soundcloud.com/">SoundCloud</a></li>
+						<li><a target="_blank" href="http://storify.com/">Storify</a></li>
+						<li><a target="_blank" href="http://twitter.com/">Twitter</a></li>
 					</ul>
 				
-					<p>Know of more? <a href="mailto:jeffehobbs@gmail.com">Let me know</a> and report any issues on <a href="https://github.com/jeffehobbs/embedresponsively/issues/new">GitHub</a>.</p>
+					<p>Know of more? New embed type giving you problems? <a href="mailto:jeffehobbs@gmail.com">Let me know</a> and report any issues on <a  target="_blank" href="https://github.com/jeffehobbs/embedresponsively/issues/new">GitHub</a>.</p>
                 </div>
               </div>
 			  
@@ -372,30 +473,49 @@
 	  </div>
 	</div>
 
-	<footer style="padding:10px 0px 10px 0px">
-				<p class="muted" style="text-align:center"><a href="https://github.com/jeffehobbs/embedresponsively">Download or fork on Github</a>. 
-				Please Embed Responsively.</p>
-	</footer>
-	
-	<div id="about" class="modal hide fade">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	    <h3>About</h3>
+	<!--footer-->
+	<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+	  <div class="container">
+		<p class="text-muted text-center" style="padding-top: 12px"><small><a  target="_blank" href="https://github.com/jeffehobbs/embedresponsively">Download or fork on Github</a>. 
+		Please Embed Responsively.</small></p>
 	  </div>
-	  <div class="modal-body">
-		  
-		<p><strong>embedresponsively.com</strong> helps build responsive embed codes for embedding rich third-party media into responsive web pages.</p>
+	</nav>
+
+	<!-- about box -->
+	<div id="about" class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title">About</h4>
+	      </div>
+	      <div class="modal-body">
+			  
+	  		<p><strong>embedresponsively.com</strong> helps build responsive embed codes for embedding rich third-party media into responsive web pages.</p>
 		
-		<p>The code here is based on research and work by <a href="http://alistapart.com/article/creating-intrinsic-ratios-for-video">Theirry Koblentz</a>, <a href="http://amobil.se/2011/11/responsive-embeds/">Anders Andersen</a> and <a href="http://niklausgerber.com/blog/responsive-google-or-bing-maps/">Niklaus Gerber</a>.</p>
+	  		<p>The code here is based on research and work by <a  target="_blank" href="http://alistapart.com/article/creating-intrinsic-ratios-for-video">Theirry Koblentz</a>, <a  target="_blank" href="http://amobil.se/2011/11/responsive-embeds/">Anders Andersen</a> and <a  target="_blank" href="http://niklausgerber.com/blog/responsive-google-or-bing-maps/">Niklaus Gerber</a>.</p>
 			
-	    <p>Created and maintained by <a href="http://twitter.com/jeffehobbs">@jeffehobbs</a>.</p>
+	  	    <p>Created and maintained by <a target="_blank" href="http://twitter.com/jeffehobbs">@jeffehobbs</a>.</p>
 				
-	  </div>
-	  <div class="modal-footer">
-  	    <p class="pull-left">Version 1.2 (added Dailymotion, thanks <a href="https://github.com/dharFr">dhar</a>!)</p>  
-	    <a href="#" class="btn btn-primary" data-dismiss="modal">OK</a>
-	  </div>
-	</div>
+	      </div>
+	      <div class="modal-footer">
+			  <div class="pull-left">Version 3.0 (Added <a target="_blank" href="http://www.gettyimages.com/">Getty Images</a>)</div>
+	        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+		
+	<script>
+	
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-59418-18', 'embedresponsively.com');
+	  ga('send', 'pageview');
+
+	</script>
 	
   </body>
 
