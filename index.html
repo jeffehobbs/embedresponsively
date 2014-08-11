@@ -29,6 +29,14 @@
 		height: 0; 
 		overflow: hidden; 
 	} 
+/*if external css, target apple touch screen devices with
+@media screen and (-webkit-min-device-pixel-ratio:0) and (max-device-width : 1024px) */	
+#genericpreview .embed-container{
+	-webkit-overflow-scrolling: touch; /*iframes should scroll*/
+  overflow-y: scroll; /*iframes should scroll, but this rule will cause two scroll bars in chrome on windows*/
+  overflow-x: scroll;
+}
+
 
 	.embed-container-squarish {
 		position: relative; 
