@@ -88,7 +88,7 @@
 	var embedGettyContainerCSSFront = "&lt;style&gt;.embed-container { position: relative; padding-bottom: ";
 	var embedGettyContainerCSSBack = "%; height: 0; overflow: hidden; max-width: 100%; height: auto; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
 	var embedSquareContainerCSS = "&lt;style&gt;.embed-container {position: relative; padding-bottom: 100%; height: 0; overflow: hidden;} .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
-	var embedSquarishContainerCSS = "&lt;style&gt;.embed-container {position: relative; padding-bottom: 120%; height: 0; overflow: hidden;} .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
+	var embedSquarishContainerCSS = "&lt;style&gt;.embed-container {position: relative; padding-top: 100px; padding-bottom: 100%; height: 0; overflow: hidden;} .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;";
 	var embedContainerDivOpen = "&lt;div class='embed-container'&gt;";
 	var embedContainerDivClose = "&lt;/div&gt;";
 	
@@ -173,7 +173,7 @@
 		var instagramEmbedURL = "<iframe src='"+shortinstagramURL+"embed/' frameborder='0' scrolling='no' allowtransparency='true'></iframe>";
 		$("#instagramembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedSquarishContainerCSS + embedContainerDivOpen + instagramEmbedURL + embedContainerDivClose + "</textarea>");
 		$("#instagrampreview").html( previewLabel + previewPrefixSquarish + instagramEmbedURL + previewSuffix );
-		$("#squarish").css( "padding-bottom", "120%" );
+		$("#squarish").css( "padding-top", "100px" ).css( "padding-bottom", "100%" );
 		
 	}
 
