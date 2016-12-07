@@ -10,6 +10,8 @@
 
 	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 	
+	<base href="http://embedresponsively.com/">
+	
 	<link href="css/bootstrap3.min.css" rel="stylesheet">
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap3.min.js"></script>   
@@ -112,8 +114,8 @@
 			var youtubeID = youtubeURL.substring(16);
 		}
 		
-		var youtubeEmbed = "&lt;iframe src='http://www.youtube.com/embed/" + youtubeID + "' frameborder='0' allowfullscreen&gt;&lt;/iframe&gt;";
-		var youtubepreview = "<iframe src='http://www.youtube.com/embed/" + youtubeID + "' frameborder='0' allowfullscreen></iframe>";
+		var youtubeEmbed = "&lt;iframe src='https://www.youtube.com/embed/" + youtubeID + "' frameborder='0' allowfullscreen&gt;&lt;/iframe&gt;";
+		var youtubepreview = "<iframe src='https://www.youtube.com/embed/" + youtubeID + "' frameborder='0' allowfullscreen></iframe>";
 
 		$("#youtubeembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedContainerCSS + embedContainerDivOpen + youtubeEmbed + embedContainerDivClose + "</textarea>");
 		$("#youtubepreview").html( previewLabel + previewPrefix + youtubepreview + previewSuffix );
@@ -131,7 +133,7 @@
 			var vimeoID = vimeoURL.substring(17);
 		}
 	
-		var vimeoEmbed = "&lt;iframe src='"+protocol+"://player.vimeo.com/video/" + vimeoID + "' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen&gt;&lt;/iframe&gt;";
+		var vimeoEmbed = "&lt;iframe src='https://player.vimeo.com/video/" + vimeoID + "' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen&gt;&lt;/iframe&gt;";
 		var vimeopreview = "<iframe src='"+protocol+"://player.vimeo.com/video/" + vimeoID + "'  frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";
 
 		$("#vimeoembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedContainerCSS + embedContainerDivOpen + vimeoEmbed + embedContainerDivClose + "</textarea>");
@@ -142,8 +144,8 @@
 	function createDailymotionEmbed(){
 		var dailymotionURL = $("#dailymotion-url").val();
 		var dailymotionID = (m =dailymotionURL.match(new RegExp("\/video\/([^_?#]+).*?"))) ? m[1] : void 0;
-		var dailymotionEmbed = "&lt;iframe src='http://www.dailymotion.com/embed/video/" + dailymotionID + "' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen&gt;&lt;/iframe&gt;";
-		var dailymotionpreview = "<iframe src='http://www.dailymotion.com/embed/video/" + dailymotionID + "'  frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";
+		var dailymotionEmbed = "&lt;iframe src='https://www.dailymotion.com/embed/video/" + dailymotionID + "' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen&gt;&lt;/iframe&gt;";
+		var dailymotionpreview = "<iframe src='https://www.dailymotion.com/embed/video/" + dailymotionID + "'  frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";
 		
 		$("#dailymotionembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedContainerCSS + embedContainerDivOpen + dailymotionEmbed + embedContainerDivClose + "</textarea>");
 		$("#dailymotionpreview").html( previewLabel + previewPrefix + dailymotionpreview + previewSuffix );
@@ -163,14 +165,22 @@
 
 	function createInstagramEmbed(){
 		var instagramURL = $("#instagram-url").val();
-		var shortinstagramURL = instagramURL.slice(5);
-		var last_character = shortinstagramURL[shortinstagramURL.length-1];
-		
-		if (last_character!="/") {
-			shortinstagramURL = shortinstagramURL + "/";
+		// No need to strip http now. Force embed to be https
+		var protocol = instagramURL.slice(0,5);
+		if (protocol == "https"){
+			var instagramID = instagramURL.substring(24);
+		} else {
+			protocol = "http";
+			var instagramID = instagramURL.substring(23);
 		}
 		
-		var instagramEmbedURL = "<iframe src='"+shortinstagramURL+"embed/' frameborder='0' scrolling='no' allowtransparency='true'></iframe>";
+		var last_character = instagramURL[instagramURL.length-1];
+		
+		if (last_character!="/") {
+			instagramURL = instagramURL + "/";
+		}
+		
+		var instagramEmbedURL = "<iframe src='https://instagram.com/p/"+instagramID+"embed/' frameborder='0' scrolling='no' allowtransparency='true'></iframe>";
 		$("#instagramembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedSquarishContainerCSS + embedContainerDivOpen + instagramEmbedURL + embedContainerDivClose + "</textarea>");
 		$("#instagrampreview").html( previewLabel + previewPrefixSquarish + instagramEmbedURL + previewSuffix );
 		$("#squarish").css( "padding-bottom", "120%" );
@@ -279,7 +289,7 @@
 					    <label>YouTube Page URL:</label>
 						
 						<div class="input-group">
-						      <input type="text" id="youtube-url" class="form-control" value="http://youtube.com/watch?v=QILiHiTD3uc">
+						      <input type="text" id="youtube-url" class="form-control" value="https://youtube.com/watch?v=QILiHiTD3uc">
 						      <span class="input-group-btn">
 						        <button class="btn btn-primary" onclick="createYouTubeEmbed();" type="button">Embed</button>
 						      </span>
@@ -300,7 +310,7 @@
 					    <label>Vimeo Page URL:</label>
 						
 						<div class="input-group">
-						      <input type="text" id="vimeo-url" class="form-control" value="http://vimeo.com/66140585">
+						      <input type="text" id="vimeo-url" class="form-control" value="https://vimeo.com/66140585">
 						      <span class="input-group-btn">
 						        <button class="btn btn-primary" onclick="createVimeoEmbed();" type="button">Embed</button>
 						      </span>
@@ -321,7 +331,7 @@
 					    <label>Dailymotion Page URL:</label>
 						
 						<div class="input-group">
-						      <input type="text" id="dailymotion-url" class="form-control" value="http://dailymotion.com/video/xsr67x">
+						      <input type="text" id="dailymotion-url" class="form-control" value="https://dailymotion.com/video/xsr67x">
 						      <span class="input-group-btn">
 						        <button class="btn btn-primary" onclick="createDailymotionEmbed();" type="button">Embed</button>
 						      </span>
@@ -389,7 +399,7 @@
 					    <label>Instagram Page URL:</label>
 						
 						<div class="input-group">
-						      <input type="text" id="instagram-url" class="form-control" value="http://instagram.com/p/dnQi4EGuZx/">
+						      <input type="text" id="instagram-url" class="form-control" value="https://instagram.com/p/dnQi4EGuZx/">
 						      <span class="input-group-btn">
 						        <button class="btn btn-primary" onclick="createInstagramEmbed();" type="button">Embed</button>
 						      </span>
@@ -411,7 +421,7 @@
 					    <label>Vine URL:</label>
 						
 						<div class="input-group">
-						      <input type="text" id="vine-url" class="form-control" value="https://vine.co/v/h9eAhKWzJlv/">
+						      <input type="text" id="vine-url" class="form-control" value="https://vine.co/v/MjpK9pmKvzu/">
 						      <span class="input-group-btn">
 						        <button class="btn btn-primary" onclick="createVineEmbed();" type="button">Embed</button>
 						      </span>
@@ -459,10 +469,10 @@
 					<p><strong>Great news!</strong> The embed codes offered by these services are already responsive:</p>
 					
 					<ul>
-						<li><a target="_blank" href="http://scribd.com/">Scribd</a> (select 'Autosize')</li>
-						<li><a target="_blank" href="http://soundcloud.com/">SoundCloud</a></li>
-						<li><a target="_blank" href="http://storify.com/">Storify</a></li>
-						<li><a target="_blank" href="http://twitter.com/">Twitter</a></li>
+						<li><a target="_blank" href="https://scribd.com/">Scribd</a> (select 'Autosize')</li>
+						<li><a target="_blank" href="https://soundcloud.com/">SoundCloud</a></li>
+						<li><a target="_blank" href="https://storify.com/">Storify</a></li>
+						<li><a target="_blank" href="https://twitter.com/">Twitter</a></li>
 					</ul>
 				
 					<p>Know of more? New embed type giving you problems? <a href="mailto:jeffehobbs@gmail.com">Let me know</a> and report any issues on <a  target="_blank" href="https://github.com/jeffehobbs/embedresponsively/issues/new">GitHub</a>.</p>
@@ -494,11 +504,11 @@
 		
 	  		<p>The code here is based on research and work by <a  target="_blank" href="http://alistapart.com/article/creating-intrinsic-ratios-for-video">Theirry Koblentz</a>, <a  target="_blank" href="http://amobil.se/2011/11/responsive-embeds/">Anders Andersen</a> and <a  target="_blank" href="http://niklausgerber.com/blog/responsive-google-or-bing-maps/">Niklaus Gerber</a>.</p>
 			
-	  	    <p>Created and maintained by <a target="_blank" href="http://twitter.com/jeffehobbs">@jeffehobbs</a>.</p>
+	  	    <p>Created and maintained by <a target="_blank" href="https://twitter.com/jeffehobbs">@jeffehobbs</a>.</p>
 				
 	      </div>
 	      <div class="modal-footer">
-			  <div class="pull-left">Version 3.0 (Added <a target="_blank" href="http://www.gettyimages.com/">Getty Images</a>)</div>
+			  <div class="pull-left">Version 3.0 (Added <a target="_blank" href="https://www.gettyimages.com/">Getty Images</a>)</div>
 	        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
 	      </div>
 	    </div><!-- /.modal-content -->
