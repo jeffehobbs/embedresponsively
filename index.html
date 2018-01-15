@@ -186,6 +186,16 @@
 		$("#squarish").css( "padding-bottom", "120%" );
 		
 	}
+	
+	function createGettyEmbed(){
+		var gettyURL = $("#getty-url").val();
+		var gettyID = (m =gettyURL.match(new RegExp("\/embed\/(.*?)\""))) ? m[1] : void 0;
+		var gettyEmbedURL = "&lt;iframe src='http://embed.gettyimages.com/embed/" + gettyID + "' frameborder='0' scrolling='no'&gt;&lt;/iframe&gt;";
+		var gettyPreviewURL = "<iframe src='http://embed.gettyimages.com/embed/" + gettyID + "' frameborder='0' scrolling='no'></iframe>";
+
+		$("#gettyembedCode").html( embedLabel + "<textarea rows='12' class='codebox'>" + embedContainerCSS + embedContainerDivOpen + gettyEmbedURL + embedContainerDivClose + "</textarea>");
+		$("#gettypreview").html( previewLabel + previewPrefix + gettyPreviewURL + previewSuffix );
+	}	
 
 	function createVineEmbed(){
 		
@@ -275,6 +285,7 @@
 	              <li><a href="#dailymotion" data-toggle="tab">Dailymotion</a></li>
 	              <li><a href="#googlemaps" data-toggle="tab">Google Maps</a></li>
 	              <li><a href="#instagram" data-toggle="tab">Instagram</a></li>
+	              <li><a href="#getty" data-toggle="tab">Getty Images</a></li>
 	              <li><a href="#vine" data-toggle="tab">Vine</a></li>
 	              <li><a href="#getty" data-toggle="tab">Getty Images</a></li>
 	              <li><a href="#iframe" data-toggle="tab">Generic iFrame</a></li>
@@ -413,6 +424,24 @@
 	  			  <div class="code" id="instagramembedCode"></div>
   
 				</div>
+				
+		<div class="tab-pane fade well" id="getty">
+					
+					<form>
+					  <fieldset>
+					    <label>Getty (iFrame embed):</label>
+						<div class="input-append">
+							<input class="span6 inputfix" id="getty-url" type="text" placeholder="<iframe src='http://embed.gettyimages.com/embed/103332457?et=kRfMYDkec02a7ULgOKh-Kw&sig=5Tv96kTzzWdwMDNV_GiSux5prTGJoebq6633nvcmugM=' width='400' height='601' frameborder='0' scrolling='no'></iframe>">
+					    	<a class="btn btn-primary" onclick="createGettyEmbed();">Embed</a>
+						</div>
+					  </fieldset>
+					</form>
+  	  			  
+				  <div id="gettypreview"></div>
+			  
+  	  			  <div class="code" id="gettyembedCode"></div>
+				  				                
+				</div>		
 				
                 <div class="tab-pane fade well" id="vine">
 					
